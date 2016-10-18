@@ -1,3 +1,9 @@
+/*
+	Filename: Maze.cpp
+	Modified By: Logan Davis & Autumn Ferree
+	Last Date Modified: 10/18/2016
+*/
+
 #include "Maze.h"
 #include "Color.h"
 #include "Rect.h"
@@ -70,22 +76,10 @@ bool Maze::traverse(int row, int col)
          //IMPORTANT!!
          //don't use row++ or column++ use row + 1 or col + 1, etc.
          //IMPORTANT: make use of the boolean that is returned every time you call traverse
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		 if (traverse(row + 1, col) || traverse(row, col + 1) || traverse(row, col - 1) || traverse(row - 1, col))
+		 {
+			 done = true;
+		 }
       }
 
       //if we are done, on the way back recursively we must mark the path that we took as the solution path
@@ -93,8 +87,7 @@ bool Maze::traverse(int row, int col)
       {
          //DO THIS
          //mark the path taken as the solution path
-
-
+		 maze->setElement(row, col, PATH);
 
          gui->update();
       }
@@ -102,8 +95,7 @@ bool Maze::traverse(int row, int col)
       else
       {
          //DO THIS
-
-
+		 maze->setElement(row, col, BACKTRACK);
 
          Sleep(SPEED);
          gui->update();
